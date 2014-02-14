@@ -83,6 +83,7 @@ object MainForm: TMainForm
     ImageIndex = 6
     Images = ImageList1
     TabOrder = 2
+    OnClick = Button2Click
   end
   object XMLDocument: TXMLDocument
     Left = 480

@@ -81,7 +81,7 @@ end;
 
 procedure TMainForm.Button2Click(Sender: TObject);
 begin
-FillListview;
+  ShowMessage('Author: 0x92 | Contact: 0x92dev@gmail.com | https://github.com/0x92 | v 0.1');
 end;
 
 procedure TMainForm.FillListview;
