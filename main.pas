@@ -107,8 +107,11 @@ begin
 
     //ShowMessage(sHost + ' ' + sPort + ' ' + sUser + ' ' + sPwd + ' ' + sName);
      for n := 0 to Length(ServerList) -1 do
-       ShowMessage(ServerList[n].Host +#10#13+ ServerList[n].Port +#10#13+ ServerList[n].User
-       +#10#13+ ServerList[n].Password +#10#13+ ServerList[n].Name);
+       ShowMessage('Host: ' + ServerList[n].Host    +#10#13+
+       'Port: ' + ServerList[n].Port                +#10#13+
+       'Username: ' +ServerList[n].User             +#10#13+
+       'Password: ' + ServerList[n].Password        +#10#13+
+       'Name: ' + ServerList[n].Name);
   end;
 end;
 
