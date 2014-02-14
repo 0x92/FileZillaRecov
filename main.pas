@@ -104,14 +104,14 @@ end;
 procedure TMainForm.GetServer;
 var
   i, j, n: Integer;
-  sPfad, sUser, sPwd, sName, sPort, sHost: String;
+  sPath: String;
   TransNodes: IXMLNodeList;
 begin
-  sPfad := GetEnvVarValue('AppData') + '\FileZilla\sitemanager.xml';
+  sPath := GetEnvVarValue('AppData') + '\FileZilla\sitemanager.xml';
 
-  if FileExists(sPfad) then
+  if FileExists(sPath) then
   begin
-    XMLDocument.LoadFromFile(sPfad);
+    XMLDocument.LoadFromFile(sPath);
 
     if Assigned(XMLDocument) then
     begin

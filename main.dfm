@@ -5,7 +5,7 @@ object MainForm: TMainForm
   BorderStyle = bsSingle
   Caption = 'FileZillaRecov'
   ClientHeight = 220
-  ClientWidth = 526
+  ClientWidth = 515
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -36,7 +36,7 @@ object MainForm: TMainForm
   object ListView: TListView
     Left = 8
     Top = 8
-    Width = 510
+    Width = 505
     Height = 170
     Columns = <
       item
@@ -45,9 +45,9 @@ object MainForm: TMainForm
         ImageIndex = 0
       end
       item
-        AutoSize = True
         Caption = 'Port'
         ImageIndex = 1
+        Width = 60
       end
       item
         AutoSize = True
@@ -75,7 +75,7 @@ object MainForm: TMainForm
     ViewStyle = vsReport
   end
   object Button2: TButton
-    Left = 373
+    Left = 368
     Top = 192
     Width = 145
     Height = 25
