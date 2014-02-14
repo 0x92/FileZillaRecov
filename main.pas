@@ -12,15 +12,19 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, xmldom, XMLIntf, msxmldom, XMLDoc, StdCtrls;
+  Dialogs, xmldom, XMLIntf, msxmldom, XMLDoc, StdCtrls, ComCtrls, ExtCtrls;
 
 type
   TMainForm = class(TForm)
     XMLDocument: TXMLDocument;
     Button1: TButton;
+    ListView: TListView;
+    Bevel1: TBevel;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     procedure GetServer;
+    procedure FillListview;
     { Private-Deklarationen }
   public
     { Public-Deklarationen }
@@ -42,7 +46,7 @@ var
   Server: TServer;        //Record
 
 const
-  bShowMessageOutput = True; // Flag True = Messageboxoutput
+  bShowMessageOutput = False; // Flag True = Messageboxoutput
 
 implementation
 
@@ -69,6 +73,29 @@ end;
 procedure TMainForm.Button1Click(Sender: TObject);
 begin
   GetServer;
+  FillListview;
+end;
+
+procedure TMainForm.Button2Click(Sender: TObject);
+begin
+FillListview;
+end;
+
+procedure TMainForm.FillListview;
+var
+  Item : TListItem;
+  i: Integer;
+begin
+  ListView.Items.Clear;
+  for i := 0 to Length(ServerList) -1 do
+  begin
+    Item                  := ListView.Items.Add;
+    Item.Caption          := ServerList[i].Host;
+    Item.SubItems.Add     (ServerList[i].Port);
+    Item.SubItems.Add     (ServerList[i].User);
+    Item.SubItems.Add     (ServerList[i].Password);
+    Item.SubItems.Add     (ServerList[i].Name);
+  end;
 end;
 
 procedure TMainForm.GetServer;
@@ -76,7 +103,6 @@ var
   i, j, n: Integer;
   sPfad, sUser, sPwd, sName, sPort, sHost: String;
   TransNodes: IXMLNodeList;
-  F: File of TServer;
 begin
   sPfad := GetEnvVarValue('AppData') + '\FileZilla\sitemanager.xml';
   if FileExists(sPfad) then
