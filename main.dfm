@@ -68,6 +68,7 @@ object MainForm: TMainForm
     GridLines = True
     LargeImages = ImageList1
     GroupHeaderImages = ImageList1
+    RowSelect = True
     ParentDoubleBuffered = False
     SmallImages = ImageList1
     TabOrder = 1

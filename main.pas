@@ -108,45 +108,45 @@ var
   TransNodes: IXMLNodeList;
 begin
   sPfad := GetEnvVarValue('AppData') + '\FileZilla\sitemanager.xml';
+
   if FileExists(sPfad) then
-  try
-    XMLDocument.LoadFromFile(sPfad);
-    //ShowMessage('ok');
-  except
-    ShowMessage('Loading error!');
-    Exit;
-  end;
-
-  if Assigned(XMLDocument) then
   begin
-    TransNodes  := XMLDocument.DocumentElement.ChildNodes['Servers'].ChildNodes;
-    //ShowMessage(IntToStr(TransNodes.Count));
+    XMLDocument.LoadFromFile(sPfad);
 
-    //Set server array count
-    SetLength(ServerList, TransNodes.Count);
-
-    if TransNodes.Count >= 1 then
+    if Assigned(XMLDocument) then
     begin
-      for j := 0 to TransNodes.Count - 1 do
+      TransNodes  := XMLDocument.DocumentElement.ChildNodes['Servers'].ChildNodes;
+      //ShowMessage(IntToStr(TransNodes.Count));
+
+      //Set server array count
+      SetLength(ServerList, TransNodes.Count);
+
+      if TransNodes.Count >= 1 then
       begin
-        ServerList[j].Host     :=     TransNodes[j].ChildNodes['Host'].Text;
-        ServerList[j].Port     :=     TransNodes[j].ChildNodes['Port'].Text;
-        ServerList[j].User     :=     TransNodes[j].ChildNodes['User'].Text;
-        ServerList[j].Password :=     TransNodes[j].ChildNodes['Pass'].Text;
-        ServerList[j].Name     :=     TransNodes[j].ChildNodes['Name'].Text;
+        for j := 0 to TransNodes.Count - 1 do
+        begin
+          ServerList[j].Host     :=     TransNodes[j].ChildNodes['Host'].Text;
+          ServerList[j].Port     :=     TransNodes[j].ChildNodes['Port'].Text;
+          ServerList[j].User     :=     TransNodes[j].ChildNodes['User'].Text;
+          ServerList[j].Password :=     TransNodes[j].ChildNodes['Pass'].Text;
+          ServerList[j].Name     :=     TransNodes[j].ChildNodes['Name'].Text;
+        end;
+      end;
+
+      if bShowMessageOutput then
+      begin
+       for n := 0 to Length(ServerList) -1 do
+         ShowMessage('Host: ' + ServerList[n].Host    +#10#13+
+         'Port: ' + ServerList[n].Port                +#10#13+
+         'Username: ' +ServerList[n].User             +#10#13+
+         'Password: ' + ServerList[n].Password        +#10#13+
+         'Name: ' + ServerList[n].Name);
       end;
     end;
-
-    if bShowMessageOutput then
-    begin
-     for n := 0 to Length(ServerList) -1 do
-       ShowMessage('Host: ' + ServerList[n].Host    +#10#13+
-       'Port: ' + ServerList[n].Port                +#10#13+
-       'Username: ' +ServerList[n].User             +#10#13+
-       'Password: ' + ServerList[n].Password        +#10#13+
-       'Name: ' + ServerList[n].Name);
-    end;
-  end;
+  end
+  else
+    ShowMessage('Loading error!');
+    Exit;
 end;
 
 end.
