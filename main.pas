@@ -12,7 +12,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, xmldom, XMLIntf, msxmldom, XMLDoc, StdCtrls, ComCtrls, ExtCtrls;
+  Dialogs, xmldom, XMLIntf, msxmldom, XMLDoc, StdCtrls, ComCtrls, ExtCtrls,
+  ImgList;
 
 type
   TMainForm = class(TForm)
@@ -20,6 +21,8 @@ type
     Button1: TButton;
     ListView: TListView;
     Bevel1: TBevel;
+    ImageList1: TImageList;
+    Button2: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
   private
