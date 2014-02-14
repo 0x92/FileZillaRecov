@@ -41,6 +41,9 @@ var
   ServerList: TServerList; //Array
   Server: TServer;        //Record
 
+const
+  bShowMessageOutput = True; // Flag True = Messageboxoutput
+
 implementation
 
 {$R *.dfm}
@@ -105,13 +108,15 @@ begin
       end;
     end;
 
-    //ShowMessage(sHost + ' ' + sPort + ' ' + sUser + ' ' + sPwd + ' ' + sName);
+    if bShowMessageOutput then
+    begin
      for n := 0 to Length(ServerList) -1 do
        ShowMessage('Host: ' + ServerList[n].Host    +#10#13+
        'Port: ' + ServerList[n].Port                +#10#13+
        'Username: ' +ServerList[n].User             +#10#13+
        'Password: ' + ServerList[n].Password        +#10#13+
        'Name: ' + ServerList[n].Name);
+    end;
   end;
 end;
 
